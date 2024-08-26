@@ -21,12 +21,12 @@ export class UserEntity {
     @Column({ name: 'password', nullable: false })
     password: string;
 
-    @Column({ name: 'type_user', nullable: false })
+    @Column({ name: 'type_user', nullable: false, default: 1 })
     typeUser: number;
 
-    @CreateDateColumn({ name: 'created-at' })
+    @CreateDateColumn({ name: 'created_at' })
     createdAt: Date;
     
-    @UpdateDateColumn({ name: 'updated-at' })
+    @UpdateDateColumn({ name: 'updated_at' })
     updatedAt: Date;
 };
