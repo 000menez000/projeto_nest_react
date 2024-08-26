@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import * as path from 'path'
 
 @Module({
   imports: [
@@ -17,11 +18,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       password: process.env.DB_PASSWORD,
       port: Number(process.env.DB_PORT),
       database: process.env.DB_DATABASE,
-      synchronize: true,
-      entities: [
-        __dirname + '**/*.entity{.ts,.js}',
-      ],
-      autoLoadEntities: true,
+      entities: [path.resolve(__dirname, '**', '*.entity{.ts,.js}')],
+      migrations: [path.resolve(__dirname, 'migration', '*{.ts,*.js}')],
+      migrationsRun: true,
     }),
     UserModule
   ],
