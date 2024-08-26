@@ -6,10 +6,8 @@ import { hash } from 'bcrypt';
 @Injectable()
 export class UserService {
     private users: User[] = [];
-    async createUser(CreateUserDto: CreateUserDto): Promise<User> {
-        
-        console.log('teste');
 
+    async createUser(CreateUserDto: CreateUserDto): Promise<User> {
         const saltOrRouds = 10;
         const passwordHashed = await hash(CreateUserDto.password, saltOrRouds);
         
@@ -22,6 +20,9 @@ export class UserService {
         this.users.push(user);
 
         return user;
-    };  
-}
-
+    };
+    
+    async getAllUser(): Promise<User[]> {
+        return this.users;
+    };
+};
