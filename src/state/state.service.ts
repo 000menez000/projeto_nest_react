@@ -11,7 +11,7 @@ export class StateService {
         private readonly stateRepository: Repository<StateEntity>
     ) {}
 
-    async getAllStates() {
-        return await this.stateRepository.find();
+    async getAllStates(): Promise<StateEntity[]> {
+        return this.stateRepository.find();
     }
 }
