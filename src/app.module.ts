@@ -15,6 +15,7 @@ import { insertInCity1675458752231 } from './migration/1724717681947-insert_in_c
 import { StateModule } from './state/state.module';
 import { CityModule } from './city/city.module';
 import { AddressModule } from './address/address.module';
+import { CacheModule } from './cache/cache.module';
 
 @Module({
   imports: [
@@ -43,7 +44,8 @@ import { AddressModule } from './address/address.module';
     UserModule,
     StateModule,
     CityModule,
-    AddressModule
+    AddressModule,
+    CacheModule
   ],
   controllers: [AppController],
   providers: [AppService],
