@@ -1,12 +1,12 @@
-import { ColdObservable } from "rxjs/internal/testing/ColdObservable";
-import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { UserEntity } from "src/user/entities/user.entity";
+import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn } from "typeorm";
 
 @Entity({ name: 'address' })
 export class AddressEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({ name: 'user_id', nullable: false })
+    @Column({ name: 'user_id', nullable: false }) 
     userId: number;
 
     @Column({ name: 'complement', nullable: true })
@@ -26,4 +26,8 @@ export class AddressEntity {
     
     @UpdateDateColumn({ name: 'updated_at' })
     updatedAt: Date;
+
+    @ManyToOne(() => UserEntity, (user) => user.addresses)
+    @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
+    user: UserEntity;
 }
