@@ -5,6 +5,7 @@ import { CityEntity } from 'src/city/entities/city.entity';
 import { Repository } from 'typeorm';
 import { Cache } from 'cache-manager';
 import { CacheService } from 'src/cache/cache.service';
+import { error } from 'console';
 
 @Injectable()
 export class CityService {
@@ -25,4 +26,16 @@ export class CityService {
             })
         );
     };
+
+    async findCityById(cityId: number): Promise<CityEntity> {
+        const city = this.cityRepository.findOne({
+            where: {
+                id: cityId
+            }
+        })
+
+        if (!city) {
+            new throw error
+        }
+    }
 }
